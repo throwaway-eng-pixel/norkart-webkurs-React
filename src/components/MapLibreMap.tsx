@@ -4,7 +4,7 @@ import {
   type RequestTransformFunction,
 } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
-import { RMap, useMap } from 'maplibre-react-components';
+import { RMap, useMap,RPopup } from 'maplibre-react-components';
 import { getHoydeFromPunkt } from '../api/getHoydeFromPunkt';
 import { useEffect, useState } from 'react';
 import { Overlay } from './Overlay';
@@ -23,7 +23,7 @@ type NorkartBasemapVariant =
   | 'transparent'
   | 'hybrid'
   | 'ortofoto';
-const NORKART_BASEMAP_VARIANT: NorkartBasemapVariant = 'standard';
+const NORKART_BASEMAP_VARIANT: NorkartBasemapVariant = 'darkmode';
 
 const NORKART_BASEMAP_STYLE = `${KVP_BASE_URL}norkart-basemap/${NORKART_BASEMAP_VARIANT}/style.json`;
 
@@ -41,6 +41,7 @@ export const MapLibreMap = () => {
     const hoyder = await getHoydeFromPunkt(e.lngLat.lng, e.lngLat.lat);
     setPointHoydeAtPunkt(hoyder[0].Z);
     setClickPoint(new LngLat(e.lngLat.lng, e.lngLat.lat));
+    const posisjon = [e.lngLat.lng, e.lngLat.lat]
   };
 
   return (
@@ -57,7 +58,16 @@ export const MapLibreMap = () => {
     >
       <Overlay>
         <h2>Dette er et overlay</h2>
-        <p>Legg til funksjonalitet knyttet til kartet.</p>
+
+        <p>
+        {pointHoyde !== undefined
+         ?`Høyde: ${pointHoyde} meter over havet`:""}
+        </p>
+
+
+
+
+
       </Overlay>
       <DrawComponent />
     </RMap>
