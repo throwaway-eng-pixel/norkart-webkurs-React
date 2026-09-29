@@ -57,11 +57,11 @@ export const MapLibreMap = () => {
       onClick={onMapClick}
     >
       <Overlay>
-        <h2>Dette er et overlay</h2>
+        <h2>Høyde over havet</h2>
 
         <p>
         {pointHoyde !== undefined
-         ?`Høyde: ${pointHoyde} meter over havet`:""}
+         ?`: ${pointHoyde}`:""}
         </p>
 
 
