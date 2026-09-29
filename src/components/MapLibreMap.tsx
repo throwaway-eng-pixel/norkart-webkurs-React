@@ -61,7 +61,7 @@ export const MapLibreMap = () => {
 
         <p>
         {pointHoyde !== undefined
-         ?`: ${pointHoyde}`:""}
+         ?`${pointHoyde} meter`:""}
         </p>
 
 
